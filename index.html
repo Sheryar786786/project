@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure File Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Updated Bootstrap Icons link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Login Page -->
+<div class="container-fluid" id="loginSection">
+  <div class="row w-100 justify-content-center"> <!-- Center content -->
+    <div class="login-card-wrapper"> <!-- Use wrapper -->
+      <div class="login-card">
+        <div class="site-logo">
+          <h2>SecureFiles</h2>
+          <p>Your secure document management system</p>
+        </div>
+        <h4 class="mb-4">Admin Login</h4>
+        <div class="mb-3">
+           <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email">
+        </div>
+        <div class="mb-3">
+           <input type="password" id="loginPassword" class="form-control" placeholder="Password">
+        </div>
+        <button class="btn btn-primary w-100" onclick="loginUser()">Login</button>
+        <div id="loginError"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Dashboard -->
+<div class="container mt-4 d-none" id="dashboard">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+      <h3 class="mb-0">My Secure Files</h3>
+      <button class="btn btn-sm btn-outline-secondary" onclick="logoutUser()">
+          <i class="bi bi-box-arrow-right me-1"></i>Logout
+      </button>
+  </div>
+
+  <div class="row g-4 mb-4">
+    <!-- Search Controls Column -->
+    <div class="col-lg-6">
+      <div class="card p-3 card-section h-100">
+        <h5 class="mb-3">Filter & Search</h5>
+        <div class="row g-3 align-items-end">
+          <!-- Title Search -->
+          <div class="col-md-6">
+            <label for="titleSearch" class="form-label small">Search by Title</label>
+            <input type="text" id="titleSearch" class="form-control form-control-sm" placeholder="Enter title...">
+          </div>
+          
+          <!-- File Name Search (NEW) -->
+          <div class="col-md-6">
+            <label for="fileNameSearch" class="form-label small">Search by File Name</label>
+            <input type="text" id="fileNameSearch" class="form-control form-control-sm" placeholder="Enter file name...">
+          </div>
+          
+          <!-- Date Search -->
+          <div class="col-md-6">
+            <label for="dateSearch" class="form-label small">Search by Upload Date</label>
+            <input type="date" id="dateSearch" class="form-control form-control-sm">
+          </div>
+          
+          <!-- Empty column to maintain grid layout -->
+          <div class="col-md-6"></div>
+          
+          <!-- Real-time search note -->
+          <div class="col-12">
+            <p class="text-muted small mb-0"><i class="bi bi-info-circle"></i> Filters apply in real-time</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+       <!-- Upload Section Column -->
+       <div class="col-lg-6">
+          <div class="card p-3 card-section h-100"> <!-- Added h-100 -->
+            <h5 class="mb-3">Upload New File</h5>
+            <div class="mb-2">
+              <label for="fileTitle" class="form-label small">File Title (Required)</label>
+              <input type="text" id="fileTitle" class="form-control form-control-sm" placeholder="e.g., Quarterly Report Q3">
+            </div>
+            <div class="mb-3"> <!-- Increased bottom margin -->
+               <label for="fileInput" class="form-label small">Select File</label>
+               <input type="file" id="fileInput" class="form-control form-control-sm">
+            </div>
+             <div class="alert alert-danger p-2 mt-2" id="uploadError" style="display: none; font-size: 0.9em;"></div>
+             <!-- Storage Warning could go here -->
+            <button class="btn btn-primary mt-2 btn-sm align-self-start" onclick="uploadFile()"> <!-- Made button small -->
+                <i class="bi bi-cloud-upload me-1"></i>Upload File
+            </button>
+          </div>
+       </div>
+  </div>
+
+
+  <!-- File List Section -->
+  <h4 class="mb-3 mt-4">Uploaded Files</h4>
+  <div id="fileList" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-4 g-4"> <!-- Adjusted grid cols -->
+    <!-- Files will appear here -->
+  </div>
+   <div id="noFilesMessage" class="col-12 text-center text-muted mt-4" style="display: none;">
+        <i class="bi bi-folder-x"></i> <!-- Icon size handled by CSS -->
+        <p class="mt-2">No files found.</p>
+    </div>
+</div>
+
+<!-- Link to your existing script.js -->
+<script src="script.js"></script>
+
+<!-- Optional: Bootstrap JS Bundle -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+</body>
+</html>
